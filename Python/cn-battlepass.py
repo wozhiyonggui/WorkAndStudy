@@ -1,12 +1,13 @@
+import sys
 import pandas as pd
 
 #操作前先手动全选表格转格式为文本
-path_config_battlepass = r'E:\WorkAndStudy\Python\config-cn\battlepass.xlsx'
-path_config_drop = r'E:\WorkAndStudy\Python\config-cn\drop.xlsx'
-path_result_battlepass = r'E:\WorkAndStudy\Python\result-cn\result_battlepass.xlsx'
 #修改待测试BP起初ID参数
-a = 100001
-b = 100020
+path_config_battlepass = '参数1'
+path_config_drop = '参数2'
+path_result_battlepass = '参数3'
+a = '参数4'
+b = '参数5'
 #读取battlepass
 bpid = list(range(a, b+1))
 data_BPLevel = pd.read_excel(path_config_battlepass, sheet_name='BPLevel')
@@ -17,7 +18,7 @@ sheet1 = sheet_BPLevel.drop(columns=['GotoType(uint32)', 'SeasonId(uint32)*', 'I
                                      'Exp(uint32)*', 'Id(key.uint32)*', 'PaidDrop(uint32)', 'PaidBox(uint32)', 'Cost(uint32)', 'PaidReward(array.uint32)'])
 dropid_BPLevel_free = sheet1['FreeDrop(uint32)']
 dropid_BPLevel_free = dropid_BPLevel_free.fillna(value='1')
-dropset_BPLevel_free = [i for i in dropid_BPLevel_free.values if not pd.isna(i)]
+dropset_BPLevel_free = [i for i in dropid_BPLevel_free.values] #if not pd.isna(i)]
 dropset_BPLevel_free = [int(i) for i in dropset_BPLevel_free]
 data_drop_free = pd.read_excel(path_config_drop, sheet_name='drop')
 drop_columns_free = data_drop_free.columns.values
