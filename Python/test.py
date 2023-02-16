@@ -15,7 +15,8 @@ data_BPLevel = pd.read_excel(path_config_battlepass, sheet_name='BPLevel')
 bplevel = data_BPLevel['Id(key.uint32)*'].isin(bpid)
 sheet_BPLevel = data_BPLevel[bplevel]
 #免费奖励
-sheet1 = sheet_BPLevel.drop(columns=['GotoType(uint32)', 'SeasonId(uint32)*', 'ImportantLevel(uint32)', 'SpecialGift(uint32)', 'FreePicRate(float)', 'PayPicRate(float)', 'Exp(uint32)*', 'Id(key.uint32)*', 'PaidDrop(uint32)', 'PaidBox(uint32)', 'Cost(uint32)', 'PaidReward(array.uint32)'])
+sheet1 = sheet_BPLevel.drop(columns=['GotoType(uint32)', 'SeasonId(uint32)*', 'ImportantLevel(uint32)', 'SpecialGift(uint32)', 'FreePicRate(float)', 'PayPicRate(float)',
+                                     'Exp(uint32)*', 'Id(key.uint32)*', 'PaidDrop(uint32)', 'PaidBox(uint32)', 'Cost(uint32)', 'PaidReward(array.uint32)'])
 dropid_BPLevel_free = sheet1['FreeDrop(uint32)']
 dropset_BPLevel_free = [i for i in dropid_BPLevel_free.values if not pd.isna(i)]
 dropset_BPLevel_free = [int(i) for i in dropset_BPLevel_free]
@@ -31,7 +32,8 @@ for dropid_free in dropset_BPLevel_free:
     else:
         print(dropid_free, '找不到')
 
-sheet2 = dst_free.drop(columns=['limitRepeated(array.string)', 'showId(uint32)', 'dropPackage(array.string)', 'limitExtraDropId(uint32)', 'guaranteeDropList(array.string)', 'guaranteeXRound(array.string)', 'typeId(uint32)*'])
+sheet2 = dst_free.drop(columns=['limitRepeated(array.string)', 'showId(uint32)', 'dropPackage(array.string)', 'limitExtraDropId(uint32)', 'guaranteeDropList(array.string)',
+                                'guaranteeXRound(array.string)', 'typeId(uint32)*'])
 
 excel_writer = pd.ExcelWriter(path_result_battlepass)
 sheet1.to_excel(excel_writer, sheet_name='bplevel', index=False)
