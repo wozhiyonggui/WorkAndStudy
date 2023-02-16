@@ -5,9 +5,9 @@ a = 100001
 b = 100080
 
 #操作前先手动全选表格转格式为文本
-path_config_battlepass = r'E:\Python\config-cn\battlepass.xlsx'
-path_config_drop = 'E:\Python\config-cn\drop.xlsx'
-path_result_battlepass = r'E:\Python\result-cn\result_battlepass.xlsx'
+path_config_battlepass = r'E:\WorkAndStudy\Python\config-cn\battlepass.xlsx'
+path_config_drop = 'E:\WorkAndStudy\Python\config-cn\drop.xlsx'
+path_result_battlepass = r'E:\WorkAndStudy\Python\result-cn\result_battlepass.xlsx'
 
 data_BPLevel = pd.read_excel(path_config_battlepass, sheet_name='BPLevel')
 bpid = list(range(a, b+1))
