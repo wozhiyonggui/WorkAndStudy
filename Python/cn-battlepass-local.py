@@ -69,10 +69,10 @@ excel_writer.save()
 input_path = r'E:\WorkAndStudy\Python\result-cn\result_battlepass.xlsx'
 output_path = r'E:\WorkAndStudy\Python\result-cn\result_battlepass-color.xlsx'
 sheet = 'bplevel'
-client1 = 'D'
-server1 = 'I'
-client2 = 'N'
-server2 = 'S'
+client1 = 3
+server1 = 8
+client2 = 13
+server2 = 18
 
 #取左边数
 def ClientValLeft(strval):
@@ -90,16 +90,17 @@ def ServerValRight(strval):
     # print('str:{}, servervalright:{}'.format(strval, strval.split(':')[1]))
     return strval.split(':')[1]
 
-def ABCto123(strval):
-    return ord(strval)-ord('A')
+# def ABCto123(strval):
+#     return ord(strval) - ord('A')
+
 def color_spray(input_path, output_path, sheet, client1, server1, client2, server2):
     xlsx_data = pd.read_excel(input_path, sheet_name=sheet)
-    col1_name = xlsx_data.columns[ABCto123(client1)]
-    col2_name = xlsx_data.columns[ABCto123(server1)]
+    col1_name = xlsx_data.columns[client1]
+    col2_name = xlsx_data.columns[server1]
     col1_data = xlsx_data[col1_name]
     col2_data = xlsx_data[col2_name]
-    col3_name = xlsx_data.columns[ABCto123(client2)]
-    col4_name = xlsx_data.columns[ABCto123(server2)]
+    col3_name = xlsx_data.columns[client2]
+    col4_name = xlsx_data.columns[server2]
     col3_data = xlsx_data[col3_name]
     col4_data = xlsx_data[col4_name]
 
@@ -140,20 +141,20 @@ def color_spray(input_path, output_path, sheet, client1, server1, client2, serve
 
     for i in diff_lines1:
         # work[i].fill = fill1
-        work.cell(row=i + 2, column=ABCto123(client1) + 1).fill = fill1
-        work.cell(row=i + 2, column=ABCto123(server1) + 1).fill = fill1
+        work.cell(row=i + 2, column=client1 + 1).fill = fill1
+        work.cell(row=i + 2, column=server1 + 1).fill = fill1
     for i in diff_lines2:
         # work[i].fill = fill1
-        work.cell(row=i + 2, column=ABCto123(client1) + 1).fill = fill2
-        work.cell(row=i + 2, column=ABCto123(server1) + 1).fill = fill2
+        work.cell(row=i + 2, column=client1 + 1).fill = fill2
+        work.cell(row=i + 2, column=server1 + 1).fill = fill2
     for i in diff_lines3:
         # work[i].fill = fill1
-        work.cell(row=i + 2, column=ABCto123(client2) + 1).fill = fill3
-        work.cell(row=i + 2, column=ABCto123(server2) + 1).fill = fill3
+        work.cell(row=i + 2, column=client2 + 1).fill = fill3
+        work.cell(row=i + 2, column=server2 + 1).fill = fill3
     for i in diff_lines4:
         # work[i].fill = fill1
-        work.cell(row=i + 2, column=ABCto123(client2) + 1).fill = fill4
-        work.cell(row=i + 2, column=ABCto123(server2) + 1).fill = fill4
+        work.cell(row=i + 2, column=client2 + 1).fill = fill4
+        work.cell(row=i + 2, column=server2 + 1).fill = fill4
 
     wb.close()
     wb.save(output_path)

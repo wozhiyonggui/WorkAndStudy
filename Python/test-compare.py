@@ -28,6 +28,7 @@ def ServerValRight(strval):
 
 def ABCto123(strval):
     return ord(strval)-ord('A')
+
 def color_spray(input_path, output_path, sheet, client1, server1, client2, server2):
     xlsx_data = pd.read_excel(input_path, sheet_name=sheet)
     col1_name = xlsx_data.columns[ABCto123(client1)]
