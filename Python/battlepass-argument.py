@@ -1,15 +1,33 @@
 import sys
 import pandas as pd
+import  argparse
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 
-#操作前先手动全选表格转格式为文本
+#命令行解析器对象
+parser = argparse.ArgumentParser(description='Demo of argparse')
+
+#命令行参数
+parser.add_argument('--path_config_battlepass', type=str, default=r"E:\WorkAndStudy\Python\config\battlepass.xlsx")
+parser.add_argument('--path_config_drop', type=str, default=r"E:\WorkAndStudy\Python\config\drop.xlsx")
+parser.add_argument('--path_result_battlepass', type=str, default=r"E:\WorkAndStudy\Python\result\result_battlepass.xlsx")
+parser.add_argument('--a', type=int, default=0)
+parser.add_argument('--b', type=int, default=0)
+parser.add_argument('--input_path', type=str, default=r'E:\WorkAndStudy\Python\result-cn\result_battlepass.xlsx')
+parser.add_argument('--output_path',type=str, default=r'E:\WorkAndStudy\Python\result-cn\result_battlepass-color.xlsx')
+
+#获取参数
+args = parser.parse_args()
+
 #修改待测试BP起初ID参数
-path_config_battlepass = r'E:\WorkAndStudy\Python\config\battlepass.xlsx'
-path_config_drop = r'E:\WorkAndStudy\Python\config\drop.xlsx'
-path_result_battlepass = r'E:\WorkAndStudy\Python\result\result_battlepass.xlsx'
-a = 100001
-b = 100050
+path_config_battlepass = args.path_config_battlepass
+path_config_drop = args.path_config_drop
+path_result_battlepass = args.path_result_battlepass
+a = args.a
+b = args.b
+input_path = args.input_path
+output_path = args.output_path
+
 #读取battlepass
 bpid = list(range(a, b+1))
 data_BPLevel = pd.read_excel(path_config_battlepass, sheet_name='BPLevel')
@@ -66,8 +84,8 @@ sheet4.to_excel(excel_writer, sheet_name='bplevel', index=False, startcol=15)
 excel_writer.save()
 
 #对比数据
-input_path = r'E:\WorkAndStudy\Python\result\result_battlepass.xlsx'
-output_path = r'E:\WorkAndStudy\Python\result\result_battlepass-color.xlsx'
+input_path = r'E:\WorkAndStudy\Python\result-cn\result_battlepass.xlsx'
+output_path = r'E:\WorkAndStudy\Python\result-cn\result_battlepass-color.xlsx'
 sheet = 'bplevel'
 client1 = 3
 server1 = 8
@@ -160,9 +178,6 @@ def color_spray(input_path, output_path, sheet, client1, server1, client2, serve
     wb.save(output_path)
 
 color_spray(input_path, output_path, sheet, client1, server1, client2, server2)
-
-
-
 
 
 
