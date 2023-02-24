@@ -98,3 +98,23 @@ function jiatiantianquan_url(selData, url) {
 	}
 	window.open(url)
 }
+
+//加金星
+function jiajinxing_url(selData, url) {
+	var obj = document.getElementById('myselect');
+	var index = obj.selectedIndex;
+	var global_url= obj.options[index].value;
+	var url = global_url+'/gmexec?type=2&mkind=4';
+	var userid = document.getElementById("jy1").value;
+	var num = document.getElementById("jy7").value;
+	var selData = {
+		'userid': userid,
+		'num': num,
+	}
+	for (var key in selData) {
+		if (selData[key]) {
+			url += '&' + key + '=' + selData[key] ;
+		}
+	}
+	window.open(url)
+}
